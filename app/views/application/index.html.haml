@@ -1,0 +1,15 @@
+%form{:method => 'POST', :action => '/index/create'}
+  .field
+    %label Phone Number
+    %input{:type => 'text', :name => 'phone_number'}
+
+  .field
+    %label Project Name
+    %input{:type => 'text', :name => 'project_name'}
+
+  .field
+    %label Email Address
+    %input{:type => 'email', :name => 'email'}
+
+  %button{:type => 'submit'} Create
+
