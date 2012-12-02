@@ -1,7 +1,7 @@
 .about-container
   .clearfix
     .box
-      .content ACCOUNT.ability is a free tool to remotely update an acount spreadsheet via SMS.
+      .content{:class => 'about-title'} account.ability is a free tool to remotely update an acount spreadsheet via SMS.
 
     .left-column{:class => 'box clearfix'}
       %h2 How
@@ -17,7 +17,7 @@
     .right-column{:class => 'box clearfix'}
       %h2 About
       .content
-        %p ACCOUNT.ability was created during <a href="http://www.rhok.org">Random Hack of Kindness</a>, Berlin 2012.
+        %p account.ability was created during <a href="http://www.rhok.org">Random Hack of Kindness</a>, Berlin 2012.
 
         %p Inspired by a wish from Peace Corps member Patrick Choquette to ease the pain of sharing budgets from remote locations.
 
@@ -26,5 +26,5 @@
         %br
         %br
 
-        = link_to "See Github repository", "https://github.com/matstc/rhok-accountability"
+        = link_to "See Github repository", "https://github.com/matstc/rhok-accountability", {:class => 'big-button'}
 
