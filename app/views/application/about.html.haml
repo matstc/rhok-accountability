@@ -4,24 +4,27 @@
       .content ACCOUNT.ability is a free tool to remotely update an acount spreadsheet via SMS.
 
     .left-column{:class => 'box clearfix'}
-      %h2 How:
+      %h2 How
       .content
         = image_tag "phone.png", {:class => 'phone-image'}
 
-        %p
-          != "1. Create a #{link_to "new ledger", root_path}."
+        %p 1. fill out the relevant information for a new ledger. The phone number should start with + and follow international conventions (and should not contain any spaces).
 
-        %p Once you click the "create" button, you will receive a link to a Google spreadsheet. The person with that email address is now the owner of that spreadsheet.
+        %p 2. once you click the "create" button, you will see a link to a Google spreadsheet. The person with that email address is now the owner of the spreadsheet.
 
-        %p The phone number should start with + and follow international conventions (and should not contain any spaces).
-        %p 2. Send an SMS to the administration number with an item description, followed by the price, the amount, and a description. All seperated by commas.
+        %p 3. add a budget item by sending an SMS to the organization number with “item, price, amount &amp; description”. Each cell should be seperated by commas.
 
     .right-column{:class => 'box clearfix'}
-      %h2 About:
+      %h2 About
       .content
+        %p ACCOUNT.ability was created during <a href="http://www.rhok.org">Random Hack of Kindness</a>, Berlin 2012.
+
         %p Inspired by a wish from Peace Corps member Patrick Choquette to ease the pain of sharing budgets from remote locations.
 
-        %p ACCOUNT.ability was created during <a href="http://www.rhok.org">Random Hack of Kindness</a>, in Berlin.
-
         = image_tag "logos.png", {:class => 'logos-image'}
+
+        %br
+        %br
+
+        = link_to "See Github repository", "https://github.com/matstc/rhok-accountability"
 

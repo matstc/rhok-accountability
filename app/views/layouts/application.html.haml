@@ -4,7 +4,7 @@
     = stylesheet_link_tag 'application'
     = stylesheet_link_tag 'clearfix'
     = favicon_link_tag
-  %title ACCOUNT.ability
+  %title account.ability
   %body
     - if not flash[:warning].blank?
       .warning
@@ -14,5 +14,4 @@
     .footer
       %p{:class => 'site-name'} account.ability
       = link_to "new ledger", root_path
-      %br
       = link_to "about", about_path
