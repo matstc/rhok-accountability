@@ -4,7 +4,8 @@ For more information on the use case, see RHoK's [problem statement](www.rhok.or
 
 # How to Set Up
 - You will need a [heroku](http://heroku.com) account and their [toolbelt](https://devcenter.heroku.com/articles/quickstart) installed.
-- You will also need a [Twilio account](https://www.twilio.com/).
+- You will need a [Twilio account](https://www.twilio.com/).
+- You will need a [Gmail account](https://www.gmail.com/) to handle the creation of spreadsheets.
 
 ### 1 – Clone this repository
 
@@ -17,6 +18,12 @@ For more information on the use case, see RHoK's [problem statement](www.rhok.or
   `heroku create`
 
   `git push heroku master`
+
+### 3 – Configure the gmail account to manage spreadsheets
+
+  `heroku config:add gmail=GMAIL_ACCOUNT_USERNAME`
+
+  `heroku config:add gmailp=GMAIL_ACCOUNT_PASSWORD`
 
 The application should now be running at heroku's URL.
 
