@@ -8,13 +8,17 @@ class ApplicationController < ActionController::Base
   def create
     session = GoogleDrive.login(ENV['gmail'], ENV['gmailp'])
     spreadsheet = session.create_spreadsheet("ACCOUNTability: "+params[:project_name])
-  
+    ws_dashboard = spreadsheet.worksheets[0]
+    ws_dashboard.title = "Dashboard"
+    ws_dashboard[1,1] = "Hello"
+    ws_dashboard.save
+    
     ws_generated = spreadsheet.add_worksheet("data")
     ws_generated.list.keys = ["timestamp", "phone number", "item", "description", "amount"]
                        
     ws_generated.save
     
-    ws_number_to_key = session.spreadsheet_by_key("0AsNrDUUNJ35MdFJkOUZZaTNzeTdPQTRWNmV2ZzJydFE").worksheets[0]
+    ws_number_to_key = session.spreadsheet_by_key(ENV['spreadsheet_key']).worksheets[0]
     ws_number_to_key.list.push({"Phone Number" => params[:phone_number], 
                        "Spreadsheet Key" => spreadsheet.key})
     ws_number_to_key.save
@@ -24,7 +28,7 @@ class ApplicationController < ActionController::Base
   end
   def add
     session = GoogleDrive.login(ENV['gmail'], ENV['gmailp'])
-    ws_number_to_key = session.spreadsheet_by_key("0AsNrDUUNJ35MdFJkOUZZaTNzeTdPQTRWNmV2ZzJydFE").worksheets[0]
+    ws_number_to_key = session.spreadsheet_by_key(ENV['spreadsheet_key']).worksheets[0]
     hash_row = ws_number_to_key.list.to_hash_array.find{|list_row| list_row["Phone Number"] == params[:From]}
         
     ws_account = session.spreadsheet_by_key(hash_row["Spreadsheet Key"]).worksheet_by_title["data"]
@@ -43,7 +47,7 @@ class ApplicationController < ActionController::Base
   
   #def addNumber
   #  session = GoogleDrive.login(ENV['gmail'], ENV['gmailp'])
-  #  ws_number_to_key = session.spreadsheet_by_key("0AsNrDUUNJ35MdFJkOUZZaTNzeTdPQTRWNmV2ZzJydFE").worksheets[0]
+  #  ws_number_to_key = session.spreadsheet_by_key(ENV['spreadsheet_key']).worksheets[0]
   #  hash_row = ws_number_to_key.list.to_hash_array.find{|list_row| list_row["Phone Number"] == params[:old_number]}
   #  ws_number_to_key.list.push({"Phone Number" => params[:new_number], 
   #                     "Spreadsheet Key" => hash_row["Spreadsheet Key"]})
