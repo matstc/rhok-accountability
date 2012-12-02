@@ -31,7 +31,7 @@ class ApplicationController < ActionController::Base
     ws_number_to_key = session.spreadsheet_by_key(ENV['spreadsheet_key']).worksheets[0]
     hash_row = ws_number_to_key.list.to_hash_array.find{|list_row| list_row["Phone Number"] == params[:From]}
         
-    ws_account = session.spreadsheet_by_key(hash_row["Spreadsheet Key"]).worksheet_by_title["data"]
+    ws_account = session.spreadsheet_by_key(hash_row["Spreadsheet Key"]).worksheet_by_title("data")
     values = params[:Body].split(",").map{|value| value.strip}
         
     ws_account.list.push({"timestamp" => Time.now, 
