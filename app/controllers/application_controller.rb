@@ -7,7 +7,7 @@ class ApplicationController < ActionController::Base
   
   def create
     session = GoogleDrive.login(ENV['gmail'], ENV['gmailp'])
-    spreadsheet = session.create_spreadsheet("ACCOUNTability: "params[:project_name])
+    spreadsheet = session.create_spreadsheet("ACCOUNTability: "+params[:project_name])
     ws_generated = spreadsheet.worksheets[0]
     ws_generated.list.keys = ["timestamp", "phone number", "item", "description", "amount"]
     ws_generated.list.push({"timestamp" => Time.now, 
