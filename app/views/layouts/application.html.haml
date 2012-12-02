@@ -5,6 +5,10 @@
     = stylesheet_link_tag 'clearfix'
   %title ACCOUNT.ability
   %body
+    - if not flash[:warning].blank?
+      .warning
+        != flash[:warning]
+
     = yield
     .footer
       %p{:class => 'site-name'} account.ability
