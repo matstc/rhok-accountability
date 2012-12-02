@@ -5,7 +5,7 @@ For more information on the use case, see RHoK's [problem statement](www.rhok.or
 # How to Set Up
 - You will need a [heroku](http://heroku.com) account and their [toolbelt](https://devcenter.heroku.com/articles/quickstart) installed.
 - You will need a [Twilio account](https://www.twilio.com/).
-- You will need a [Gmail account](https://www.gmail.com/) to handle the creation of spreadsheets.
+- You will need a [Gmail account](https://www.gmail.com/) to handle the creation of spreadsheets. Use a new Gmail account for better experience.
 
 ### 1 – Clone this repository
 
