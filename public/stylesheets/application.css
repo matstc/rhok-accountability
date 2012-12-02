@@ -1,0 +1,32 @@
+a:link { font-size: 12px; color: rgba(0, 0, 0, 0.7); text-decoration: underline; }
+a:visited { color: rgba(0, 0, 0, 0.7); text-decoration: underline; }
+a:hover { color: rgba(0, 0, 0, 0.7); background-color: #D6E2D0; }
+a:active { font-size: 12px; color: rgba(0, 0, 0, 0.7); text-decoration: underline; }
+a.nontext { color: black; text-decoration: none; font-style: normal; font-weight: normal; }
+
+* {font-family: Andale Mono;}
+h1{ font-family: "Andale Mono"; font-size: 18px; color: rgba(0, 0, 0, 0.7); text-transform: uppercase; }
+h2{ font-family: "Andale Mono"; font-size: 14px; color: rgba(0, 0, 0, 0.7); text-transform: uppercase; }
+p {font-family: Andale Mono; font-size: 14px; color: rgba(0, 0, 0, 0.7);}
+label {display:block; margin-top:1em;}
+input[type="text"], input[type="tel"], input[type="email"] {width:100%; border-style:none; background-color:#f3f3f3; height:32px;}
+input:focus {background-color:white;}
+button {margin-top:2em; text-transform:uppercase; padding:0.2em 1em;}
+
+.explanation {margin-top:3em;}
+.container {width:380px; background-color:#d6e2d0; margin:auto; margin-top:2em; padding:0.5em 2em 1em 2em;}
+.about-container {width:960px; background-color:#d6e2d0; margin:auto; margin-top:2em; padding:28px;}
+.footer {text-align:center; margin-top:1em;}
+.footer p.site-name {font-size:110%; margin:0.5em;}
+.footer a {margin-left:0.5em; margin-right:0.5em; font-size:90%; line-height:2em;}
+.container form .box {margin-bottom:1em;}
+.container form .box .content {padding:0;}
+.top-header {text-align:center;}
+
+.box {border:1px solid #555;}
+.box .content {padding:1em;}
+.box h3 {border-bottom:1px solid #555; padding:0; margin:0; text-align:center;}
+.left-column, .right-column {float:left; width:471px; height:310px; margin-top:14px;}
+.phone-image {float:right;}
+.logos-image {float:right;}
+.right-column {margin-left:14px;}
