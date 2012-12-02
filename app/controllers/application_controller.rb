@@ -19,13 +19,30 @@ class ApplicationController < ActionController::Base
     ws_generated.save
     
     ws_number_to_key = session.spreadsheet_by_key("0AsNrDUUNJ35MdFJkOUZZaTNzeTdPQTRWNmV2ZzJydFE").worksheets[0]
-    num_rows = ws_number_to_key.num_rows
-    ws_number_to_key[num_rows, 1] = params[:phone_number]
-    ws_number_to_key[num_rows, 2] = spreadsheet.key
+    ws_number_to_key.list.push({"Phone Number" => params[:phone_number], 
+                       "Spreadsheet Key" => spreadsheet.key})
     ws_number_to_key.save
     spreadsheet.acl.push({:scope_type => "user", :scope => params[:email], :role => "owner"})
     flash[:notice] = "Your new spreadsheet is available <a href='#{spreadsheet.human_url}'> here.</a>"
     redirect_to root_url
+  end
+  def add
+    session = GoogleDrive.login("rhokingout@gmail.com", "accountability1")
+    ws_number_to_key = session.spreadsheet_by_key("0AsNrDUUNJ35MdFJkOUZZaTNzeTdPQTRWNmV2ZzJydFE").worksheets[0]
+    hash_row = ws_number_to_key.list.to_hash_array.find{|list_row| list_row["Phone Number"] == params[:From]}
+        
+    ws_account = session.spreadsheet_by_key(hash_row["Spreadsheet Key"]).worksheets[0]
+    values = params[:message].split(",").map{|value| value.strip}
+        
+    ws_account.list.push({"timestamp" => Time.now, 
+                           "phone number" => params[:From], 
+                           "item" => values[0], 
+                           "description" => values[2], 
+                           "amount" => values[1]})
+    ws_account.save
+        
+    
+    
   end
   
 end
