@@ -44,7 +44,7 @@ class ApplicationController < ActionController::Base
 
   def add
     session = GoogleDrive.login(ENV['gmail'], ENV['gmailp'])
-    ws_number_to_key = session.spreadsheet_by_key(ENV['spreadsheet_key']).worksheets[0]
+    ws_number_to_key = session.spreadsheet_by_title(@@DATABASE_SPREADSHEET_TITLE).worksheets[0]
     hash_row = ws_number_to_key.list.to_hash_array.find{|list_row| list_row["Phone Number"] == params[:From]}
     raise "This phone number is not registered: #{params[:From]}." if hash_row.blank?
         
@@ -54,7 +54,7 @@ class ApplicationController < ActionController::Base
         
     new_row = [[Time.now, params[:From], *values]]
     new_row_index = ws_account.num_rows + 1
-    puts "Updating speadsheet (#{spreadsheet.title}) at row ##{new_row_index} with content: #{new_row}"
+    puts "Updating spreadsheet (#{spreadsheet.title}) at row ##{new_row_index} with content: #{new_row}"
     ws_account.update_cells(new_row_index, 1, new_row)
     ws_account.save
   end
