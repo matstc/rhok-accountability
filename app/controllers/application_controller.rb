@@ -2,7 +2,9 @@ class ApplicationController < ActionController::Base
   protect_from_forgery
 
   def index
-    
+    if ENV['gmail'].blank? or ENV['gmailp'].blank?
+      flash[:warning] = "The configuration variables \"gmail\" and \"gmailp\" are not set on the server. Creating a new ledger will not work.<br><br>Make sure you set these configuration variables and restart the server."
+    end
   end
   
   def create
