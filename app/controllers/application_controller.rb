@@ -8,13 +8,9 @@ class ApplicationController < ActionController::Base
   def create
     session = GoogleDrive.login(ENV['gmail'], ENV['gmailp'])
     spreadsheet = session.create_spreadsheet("ACCOUNTability: "+params[:project_name])
-    ws_generated = spreadsheet.worksheets[0]
+  
+    ws_generated = spreadsheet.add_worksheet("data")
     ws_generated.list.keys = ["timestamp", "phone number", "item", "description", "amount"]
-    ws_generated.list.push({"timestamp" => Time.now, 
-                       "phone number" => "+14692086681", 
-                       "item" => "pencil", 
-                       "description" => "lost the previous", 
-                       "amount" => "2.50"})
                        
     ws_generated.save
     
@@ -31,7 +27,7 @@ class ApplicationController < ActionController::Base
     ws_number_to_key = session.spreadsheet_by_key("0AsNrDUUNJ35MdFJkOUZZaTNzeTdPQTRWNmV2ZzJydFE").worksheets[0]
     hash_row = ws_number_to_key.list.to_hash_array.find{|list_row| list_row["Phone Number"] == params[:From]}
         
-    ws_account = session.spreadsheet_by_key(hash_row["Spreadsheet Key"]).worksheets[0]
+    ws_account = session.spreadsheet_by_key(hash_row["Spreadsheet Key"]).worksheet_by_title["data"]
     values = params[:Body].split(",").map{|value| value.strip}
         
     ws_account.list.push({"timestamp" => Time.now, 
