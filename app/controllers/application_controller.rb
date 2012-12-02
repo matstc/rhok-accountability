@@ -1,5 +1,5 @@
 class ApplicationController < ActionController::Base
-  @@DATABASE_SPREADSHEET_TITLE = "ACCOUNTability Database"
+  @@DATABASE_SPREADSHEET_TITLE = "account.ability Database"
   
   protect_from_forgery
 
@@ -12,7 +12,7 @@ class ApplicationController < ActionController::Base
   def create
     session = GoogleDrive.login(ENV['gmail'], ENV['gmailp'])
 
-    file = session.upload_from_file("config/initializers/ACCOUNTability.xlsx","ACCOUNTability: "+params[:project_name], :content_type => "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet")
+    file = session.upload_from_file("config/initializers/accountability.xlsx","account.ability: "+params[:project_name], :content_type => "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet")
     spreadsheet = session.spreadsheet_by_url(file.human_url)
     spreadsheet.worksheets.each {|ws|
       ws.max_cols = 100
@@ -61,7 +61,7 @@ class ApplicationController < ActionController::Base
   
   #def addNumber
   #  session = GoogleDrive.login(ENV['gmail'], ENV['gmailp'])
-  #  ws_number_to_key = session.spreadsheet_by_key(ENV['spreadsheet_key']).worksheets[0]
+  #  ws_number_to_key = session.spreadsheet_by_key(@@DATABASE_SPREADSHEET_TITLE).worksheets[0]
   #  hash_row = ws_number_to_key.list.to_hash_array.find{|list_row| list_row["Phone Number"] == params[:old_number]}
   #  ws_number_to_key.list.push({"Phone Number" => params[:new_number], 
   #                     "Spreadsheet Key" => hash_row["Spreadsheet Key"]})
