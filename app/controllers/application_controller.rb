@@ -6,7 +6,7 @@ class ApplicationController < ActionController::Base
   end
   
   def create
-    session = GoogleDrive.login("rhokingout@gmail.com", "accountability1")
+    session = GoogleDrive.login(ENV['gmail'], ENV['gmailp'])
     spreadsheet = session.create_spreadsheet("ACCOUNTability: "params[:project_name])
     ws_generated = spreadsheet.worksheets[0]
     ws_generated.list.keys = ["timestamp", "phone number", "item", "description", "amount"]
@@ -27,7 +27,7 @@ class ApplicationController < ActionController::Base
     redirect_to root_url
   end
   def add
-    session = GoogleDrive.login("rhokingout@gmail.com", "accountability1")
+    session = GoogleDrive.login(ENV['gmail'], ENV['gmailp'])
     ws_number_to_key = session.spreadsheet_by_key("0AsNrDUUNJ35MdFJkOUZZaTNzeTdPQTRWNmV2ZzJydFE").worksheets[0]
     hash_row = ws_number_to_key.list.to_hash_array.find{|list_row| list_row["Phone Number"] == params[:From]}
         
@@ -45,7 +45,7 @@ class ApplicationController < ActionController::Base
     
   end
   def addNumber
-    session = GoogleDrive.login("rhokingout@gmail.com", "accountability1")
+    session = GoogleDrive.login(ENV['gmail'], ENV['gmailp'])
     ws_number_to_key = session.spreadsheet_by_key("0AsNrDUUNJ35MdFJkOUZZaTNzeTdPQTRWNmV2ZzJydFE").worksheets[0]
     hash_row = ws_number_to_key.list.to_hash_array.find{|list_row| list_row["Phone Number"] == params[:old_number]}
     ws_number_to_key.list.push({"Phone Number" => params[:new_number], 
