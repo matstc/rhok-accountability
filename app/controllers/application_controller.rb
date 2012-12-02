@@ -1,4 +1,6 @@
 class ApplicationController < ActionController::Base
+  @@DATABASE_SPREADSHEET_TITLE = "ACCOUNTability Database"
+  
   protect_from_forgery
 
   def index
@@ -20,14 +22,27 @@ class ApplicationController < ActionController::Base
                        
     ws_generated.save
     
-    ws_number_to_key = session.spreadsheet_by_key(ENV['spreadsheet_key']).worksheets[0]
-    ws_number_to_key.list.push({"Phone Number" => params[:phone_number], 
-                       "Spreadsheet Key" => spreadsheet.key})
+    number_to_key = session.spreadsheet_by_title(@@DATABASE_SPREADSHEET_TITLE)
+    number_to_key = create_spreadsheet_database(session) if number_to_key.blank?
+    
+    ws_number_to_key = number_to_key.worksheets[0]
+    ws_number_to_key.list.push({"Phone Number" => params[:phone_number], "Spreadsheet Key" => spreadsheet.key})
     ws_number_to_key.save
     spreadsheet.acl.push({:scope_type => "user", :scope => params[:email], :role => "owner"})
     flash[:notice] = "Your new spreadsheet is available <a href='#{spreadsheet.human_url}'> here.</a>"
     redirect_to root_url
   end
+
+  def create_spreadsheet_database session
+    spreadsheet = session.create_spreadsheet(@@DATABASE_SPREADSHEET_TITLE)
+    ws = spreadsheet.worksheets[0]
+    ws[1,1] = "Phone Number"
+    ws[1,2] = "Spreadsheet Key"
+    ws.save
+
+    spreadsheet
+  end
+
   def add
     session = GoogleDrive.login(ENV['gmail'], ENV['gmailp'])
     ws_number_to_key = session.spreadsheet_by_key(ENV['spreadsheet_key']).worksheets[0]
