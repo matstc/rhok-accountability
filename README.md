@@ -24,7 +24,7 @@ The application should now be running at heroku's URL.
 
 Go to heroku's URL and fill out the following form:
 
-![](tree/master/public/images/index.png)
+![](rhok-accountability/blob/master/public/images/spreadsheet-screenshot.png)
 
 Once you click the "create" button, you will see a link to a Google spreadsheet. The person with that email address is now the owner of that spreadsheet.
 
@@ -33,12 +33,12 @@ The phone number should start with + and follow international conventions.
 ### 4 – Setting up Twilio
 Once you have a Twilio account, make sure you register a number. Then go to your number's settings and add the appropriate SMS request URL. The request URL follows the format `http://HEROKU_URL/application/add`. For instance, if your heroku URL is `myapp.herokuapp.com` then your request URL will be `http://myapp.herokuapp.com/application/add`
 
-![](tree/master/public/images/twilio-setup.png)
+![](rhok-accountability/blob/master/public/images/twilio-setup.png)
 
 ### 5 – Try it out
 Things should now work. If you text something to the phone number you used to set up your spreadsheet, you should see a new expense row in the spreadsheet.
 
-![](tree/master/public/images/spreadsheet-screenshot.png)
+![](rhok-accountability/blob/master/public/images/spreadsheet-screenshot.png)
 
 Format your message with commas in-between values. For example:
 
