@@ -49,14 +49,14 @@ class ApplicationController < ActionController::Base
     hash_row = ws_number_to_key.list.to_hash_array.find{|list_row| list_row["Phone Number"] == params[:From]}
     raise "This phone number is not registered: #{params[:From]}." if hash_row.blank?
         
-    ws_account = session.spreadsheet_by_key(hash_row["Spreadsheet Key"]).worksheet_by_title("data")
+    spreadsheet = session.spreadsheet_by_key(hash_row["Spreadsheet Key"])
+    ws_account = spreadsheet.worksheet_by_title("data")
     values = params[:Body].split(",").map{|value| value.strip}
         
-    ws_account.list.push({"timestamp" => Time.now, 
-                           "phone number" => params[:From], 
-                           "item" => values[0], 
-                           "description" => values[2], 
-                           "amount" => values[1]})
+    new_row = [[Time.now, params[:From], *values]]
+    new_row_index = ws_account.num_rows + 1
+    puts "Updating speadsheet (#{spreadsheet.title}) at row ##{new_row_index} with content: #{new_row}"
+    ws_account.update_cells(new_row_index, 1, new_row)
     ws_account.save
   end
   
