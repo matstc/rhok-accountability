@@ -50,12 +50,14 @@ class ApplicationController < ActionController::Base
         
     spreadsheet = session.spreadsheet_by_key(hash_row["Spreadsheet Key"])
     ws_account = spreadsheet.worksheet_by_title("data")
-    values = params[:Body].split(",").map{|value| value.strip}
+    params[:Body].split(";").each{|expense|
+      values = expense.split(",").map{|value| value.strip}
         
-    new_row = [[Time.now, params[:From], *values]]
-    new_row_index = ws_account.num_rows + 1
-    puts "Updating spreadsheet (#{spreadsheet.title}) at row ##{new_row_index} with content: #{new_row}"
-    ws_account.update_cells(new_row_index, 1, new_row)
+      new_row = [[Time.now, params[:From], *values]]
+      new_row_index = ws_account.num_rows + 1
+      puts "Updating spreadsheet (#{spreadsheet.title}) at row ##{new_row_index} with content: #{new_row}"
+      ws_account.update_cells(new_row_index, 1, new_row)
+    }
     ws_account.save
   end
   
