@@ -12,7 +12,7 @@ class ApplicationController < ActionController::Base
   def create
     session = GoogleDrive.login(ENV['gmail'], ENV['gmailp'])
 
-    file = session.upload_from_file("config/initializers/accountability.xlsx","account.ability: "+params[:project_name], :content_type => "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet")
+    file = session.upload_from_file("config/initializers/spreadsheet_template.xlsx","account.ability: "+params[:project_name], :content_type => "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet")
     spreadsheet = session.spreadsheet_by_url(file.human_url)
     spreadsheet.worksheets.each {|ws|
       ws.max_cols = 100
