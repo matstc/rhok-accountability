@@ -21,12 +21,15 @@ button {margin-top:2em; text-transform:uppercase; padding:0.2em 1em;}
 .footer a {margin-left:0.5em; margin-right:0.5em; font-size:90%; line-height:2em;}
 .container form .box {margin-bottom:1em;}
 .container form .box .content {padding:0;}
+.notice {background-color:#afa;}
 .top-header {text-align:center;}
-
+.create-ledger-button {border:1px solid #555; width:100%; padding:0.5em;}
+.create-ledger-button:hover {cursor:pointer; background-color:#aaa;}
 .box {border:1px solid #555;}
 .box .content {padding:1em;}
-.box h3 {border-bottom:1px solid #555; padding:0; margin:0; text-align:center;}
-.left-column, .right-column {float:left; width:471px; height:310px; margin-top:14px;}
-.phone-image {float:right;}
+.box h2 {border-bottom:1px solid #555; padding:0; margin:0;}
+.about-container .box h2 {text-align:center;}
+.left-column, .right-column {float:left; width:471px; height:410px; margin-top:14px;}
+.phone-image {float:right; width:200px;}
 .logos-image {float:right;}
 .right-column {margin-left:14px;}
