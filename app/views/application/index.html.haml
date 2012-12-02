@@ -1,15 +1,29 @@
-%form{:method => 'POST', :action => '/application/create'}
-  .field
-    %label Phone Number
-    %input{:type => 'tel', :name => 'phone_number'}
+.top-header
+  = image_tag "accountability.png"
 
-  .field
-    %label Project Name
-    %input{:type => 'text', :name => 'project_name'}
+.container
+  %form{:id => 'newExpensesForm', :method => 'POST', :action => '/application/create', :class => 'form-grp'}
+    %h2 New Ledger
+    .box
+      %h3 Phone Number
+      .content
+        %input{:type => 'tel', :name => 'phone_number'}
 
-  .field
-    %label Email Address
-    %input{:type => 'email', :name => 'email'}
+    .box
+      %h3 Project Name
+      .content
+        %input{:type => 'text', :name => 'project_name'}
 
-  %button{:type => 'submit'} Create
+    .box
+      %h3 Email Address
+      .content
+        %input{:type => 'email', :name => 'email'}
 
+    %button{:type => 'submit'} Create
+
+  .explanation
+    %p Here you can set up a spreadsheet for receiving expenses by SMS.
+
+    %p Once you click the "create" button, you will see a link to a Google spreadsheet. The person with that email address is now the owner of that spreadsheet.
+
+    %p The phone number should start with + and follow international conventions (and should not contain any spaces).

@@ -1,7 +1,16 @@
 !!!
 %html
+  %head
+    = stylesheet_link_tag 'application'
+    = stylesheet_link_tag 'clearfix'
+  %title ACCOUNT.ability
   %body
     .notice
       != flash[:notice]
 	  
     = yield
+    .footer
+      %p{:class => 'site-name'} account.ability
+      = link_to "new ledger", root_path
+      %br
+      = link_to "about", about_path

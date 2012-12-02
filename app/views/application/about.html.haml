@@ -1,0 +1,23 @@
+.about-container
+  .clearfix
+    .box
+      .content ACCOUNT.ability is a free tool to remotely update an acount spreadsheet via SMS.
+
+    .left-column{:class => 'box clearfix'}
+      %h3 How:
+      .content
+        = image_tag "phone.png", {:class => 'phone-image'}
+
+        %p!= "1. Create a #{link_to "new ledger", root_path}."
+
+        %p 2. Send an SMS to +1 469-208-6681 with an item description, followed by the price, the amount, and a description. All seperated by commas.
+
+    .right-column{:class => 'box clearfix'}
+      %h3 About:
+      .content
+        %p Inspired by a wish from Peace Corps member Patrick Choquette to ease the pain of sharing budgets from remote locations.
+
+        %p ACCOUNT.ability was created during <a href="http://www.rhok.org">Random Hack of Kindness</a>, in Berlin.
+
+        = image_tag "logos.png", {:class => 'logos-image'}
+
