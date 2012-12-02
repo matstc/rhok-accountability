@@ -44,16 +44,17 @@ class ApplicationController < ActionController::Base
     
     
   end
-  def addNumber
-    session = GoogleDrive.login(ENV['gmail'], ENV['gmailp'])
-    ws_number_to_key = session.spreadsheet_by_key("0AsNrDUUNJ35MdFJkOUZZaTNzeTdPQTRWNmV2ZzJydFE").worksheets[0]
-    hash_row = ws_number_to_key.list.to_hash_array.find{|list_row| list_row["Phone Number"] == params[:old_number]}
-    ws_number_to_key.list.push({"Phone Number" => params[:new_number], 
-                       "Spreadsheet Key" => hash_row["Spreadsheet Key"]})
-    ws_number_to_key.save
-    session.spreadsheet_by_key(hash_row["Spreadsheet Key"]).acl.push({:scope_type => "user", :scope => params[:email], :role => "viewer"})
+  
+  #def addNumber
+  #  session = GoogleDrive.login(ENV['gmail'], ENV['gmailp'])
+  #  ws_number_to_key = session.spreadsheet_by_key("0AsNrDUUNJ35MdFJkOUZZaTNzeTdPQTRWNmV2ZzJydFE").worksheets[0]
+  #  hash_row = ws_number_to_key.list.to_hash_array.find{|list_row| list_row["Phone Number"] == params[:old_number]}
+  #  ws_number_to_key.list.push({"Phone Number" => params[:new_number], 
+  #                     "Spreadsheet Key" => hash_row["Spreadsheet Key"]})
+  #  ws_number_to_key.save
+  #  session.spreadsheet_by_key(hash_row["Spreadsheet Key"]).acl.push({:scope_type => "user", :scope => params[:email], :role => "viewer"})
     
-  end
+  #end
   
   
 end
