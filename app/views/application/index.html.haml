@@ -1,29 +1,28 @@
-.top-header
-  = image_tag "accountability.png"
 
 .container
   %form{:id => 'newExpensesForm', :method => 'POST', :action => '/application/create', :class => 'form-grp'}
-    %h2 New Ledger
+    %h1 New Ledger
     .box
-      %h3 Phone Number
+      %h2 Phone Number
       .content
         %input{:type => 'tel', :name => 'phone_number'}
 
     .box
-      %h3 Project Name
+      %h2 Project Name
       .content
         %input{:type => 'text', :name => 'project_name'}
 
     .box
-      %h3 Email Address
+      %h2 Email Address
       .content
         %input{:type => 'email', :name => 'email'}
 
-    %button{:type => 'submit'} Create
+    %button{:type => 'submit', :class => 'create-ledger-button'} Create
 
+    .notice
+      %p
+        != flash[:notice]
+	  
   .explanation
-    %p Here you can set up a spreadsheet for receiving expenses by SMS.
+    %p Here you can set up a google spreadsheet for receiving expenses by SMS.
 
-    %p Once you click the "create" button, you will see a link to a Google spreadsheet. The person with that email address is now the owner of that spreadsheet.
-
-    %p The phone number should start with + and follow international conventions (and should not contain any spaces).
