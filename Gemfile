@@ -8,6 +8,8 @@ gem 'rails', '3.0.5'
 #gem 'pg'
 gem 'haml'
 gem 'google_drive'
+gem 'twilio-ruby'
+
 # Use unicorn as the web server
 # gem 'unicorn'
 
