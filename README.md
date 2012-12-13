@@ -8,10 +8,12 @@ For more information on the use case, see RHoK's [problem statement](www.rhok.or
 - You will need a [Gmail account](https://www.gmail.com/) to handle the creation of spreadsheets. Use a new Gmail account for better experience.
 
 ### 1 – Clone this repository
+Enter this command into your terminal:
 
   `git clone git@github.com:matstc/rhok-accountability.git`
 
 ### 2 – Deploy on heroku
+Then enter these commands into your terminal:
 
   `cd rhok-accountability`
 
