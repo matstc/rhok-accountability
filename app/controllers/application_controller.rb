@@ -3,13 +3,19 @@ class ApplicationController < ActionController::Base
   
   protect_from_forgery
 
-  def index
+  before_filter :check_variables
+
+  def check_variables
     if ENV['gmail'].blank? or ENV['gmailp'].blank?
       flash[:warning] = "The configuration variables \"gmail\" and \"gmailp\" are not set on the server. Creating a new ledger will not work.<br><br>Make sure you set these configuration variables and restart the server."
     end
   end
-  
-  def create
+
+  def index
+    redirect_to ledger_url
+  end
+
+  def create_ledger
     session = GoogleDrive.login(ENV['gmail'], ENV['gmailp'])
 
     file = session.upload_from_file("config/initializers/spreadsheet_template.xlsx","account.ability: "+params[:project_name], :content_type => "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet")
@@ -20,8 +26,6 @@ class ApplicationController < ActionController::Base
       ws.save
     }
     spreadsheet.acl.push({:scope_type => "user", :scope => params[:email], :role => "owner"})
-    
-
     
     number_to_key = session.spreadsheet_by_title(@@DATABASE_SPREADSHEET_TITLE)
     number_to_key = create_spreadsheet_database(session) if number_to_key.blank?
@@ -34,7 +38,7 @@ class ApplicationController < ActionController::Base
     ws_number_to_key.list.push({"Phone Number" => phone_number, "Spreadsheet Key" => spreadsheet.key})
     ws_number_to_key.save
     flash[:notice] = "Your new spreadsheet is available <a href='#{spreadsheet.human_url}'> here.</a>"
-    redirect_to root_url
+    redirect_to individual_ledger_url
   end
 
   def create_spreadsheet_database session
@@ -47,10 +51,17 @@ class ApplicationController < ActionController::Base
   end
 
   def add
+    Rails::logger.info "Received #add request with params: #{params}"
+
     session = GoogleDrive.login(ENV['gmail'], ENV['gmailp'])
     ws_number_to_key = session.spreadsheet_by_title(@@DATABASE_SPREADSHEET_TITLE).worksheets[0]
     hash_row = ws_number_to_key.list.to_hash_array.find{|list_row| list_row["Phone Number"] == params[:From]}
-    raise "This phone number is not registered: #{params[:From]}." if hash_row.blank?
+
+    if hash_row.blank?
+      hash_row = ws_number_to_key.list.to_hash_array.find{|list_row| list_row["Phone Number"] == params[:To]}
+      raise "This phone number is not registered: #{params[:From]}." if hash_row.blank?
+    end
+
     spreadsheet = session.spreadsheet_by_key(hash_row["Spreadsheet Key"])
     ws_data = spreadsheet.worksheet_by_title("data")
     
@@ -69,17 +80,5 @@ class ApplicationController < ActionController::Base
       ws_data.save
     end
   end
-  
-  #def addNumber
-  #  session = GoogleDrive.login(ENV['gmail'], ENV['gmailp'])
-  #  ws_number_to_key = session.spreadsheet_by_key(@@DATABASE_SPREADSHEET_TITLE).worksheets[0]
-  #  hash_row = ws_number_to_key.list.to_hash_array.find{|list_row| list_row["Phone Number"] == params[:old_number]}
-  #  ws_number_to_key.list.push({"Phone Number" => params[:new_number], 
-  #                     "Spreadsheet Key" => hash_row["Spreadsheet Key"]})
-  #  ws_number_to_key.save
-  #  session.spreadsheet_by_key(hash_row["Spreadsheet Key"]).acl.push({:scope_type => "user", :scope => params[:email], :role => "viewer"})
-    
-  #end
-  
   
 end

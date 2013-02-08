@@ -48,6 +48,7 @@ RhokACCOUNTability::Application.routes.draw do
 
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
+  match 'ledger' => "application#ledger", :as => "ledger"
   match 'about' => "application#about", :as => "about"
   root :to => "application#index"
   
