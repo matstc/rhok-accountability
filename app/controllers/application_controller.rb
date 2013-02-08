@@ -38,7 +38,7 @@ class ApplicationController < ActionController::Base
     ws_number_to_key.list.push({"Phone Number" => phone_number, "Spreadsheet Key" => spreadsheet.key})
     ws_number_to_key.save
     flash[:notice] = "Your new spreadsheet is available <a href='#{spreadsheet.human_url}'> here.</a>"
-    redirect_to individual_ledger_url
+    redirect_to ledger_url
   end
 
   def create_spreadsheet_database session
