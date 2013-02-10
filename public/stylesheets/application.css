@@ -30,7 +30,7 @@ button {margin-top:1em; text-transform:uppercase; padding:0.2em 1em;}
 .box .header {border-bottom:1px solid #555; padding:3px 0 3px 3px; margin:0;}
 .box .header h2 {margin:0;}
 .about-container .box h2 {padding-left:1em;}
-.left-column, .right-column {float:left; width:471px; height:410px; margin-top:14px;}
+.left-column, .right-column {float:left; width:471px; height:450px; margin-top:14px;}
 .logos-image {padding-bottom:28px;}
 .phone-image {float:right; width:170px;}
 .right-column {margin-left:14px;}

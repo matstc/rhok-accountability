@@ -8,11 +8,14 @@
       .content
         = image_tag "phone.png", {:class => 'phone-image'}
 
-        %p 1. fill out the relevant information for a new ledger. The phone number should start with + and follow international conventions (and should not contain any spaces).
+        %p 1. Fill out the required information for a new ledger. The phone number should start with + and follow international conventions (e.g. +34 678 12 34 56). Groupings and spaces do not matter.
 
-        %p 2. once you click the "create" button, you will see a link to a Google spreadsheet. The person with that email address is now the owner of the spreadsheet.
+        %p 2. Once you click the "CREATE LEDGER" button, you will be given a link to a Google spreadsheet. The person with the email address you entered is now the owner of the spreadsheet.
 
-        %p 3. add a budget item by sending an SMS to the organization number with “item, price, amount &amp; description”. Each cell should be seperated by commas.
+        %p 3. You can now add a ledger item by sending an SMS to the organization phone number with “item, price, amount, description”. Each value should be seperated by commas.
+
+        - if not ENV['help_email'].blank?
+          %p!= "If you do not know what the organization phone number is, you can contact <a href='mailto:#{ENV['help_email']}'>#{ENV['help_email']}</a>."
 
     .right-column{:class => 'box clearfix'}
       %h2 About
