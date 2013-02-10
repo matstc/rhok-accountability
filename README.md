@@ -1,6 +1,6 @@
 This is an automated expense system where users can submit expenses by SMS.
 
-For more information on the use case, see RHoK's [problem statement](www.rhok.org/problems/accountability).
+For more information on the use case, see RHoK's [problem statement](http://www.rhok.org/problems/accountability).
 
 # How to Set Up
 - You will need a [heroku](http://heroku.com) account and their [toolbelt](https://devcenter.heroku.com/articles/quickstart) installed.
@@ -29,6 +29,12 @@ Then enter these commands into your terminal:
 
 The application should now be running at heroku's URL.
 
+OPTIONAL: if you want to show an email address for users to contact in case they need help, set the `help_email` variable like this:
+
+  `heroku config:add help_email=YOUR_EMAIL_ADDRESS`
+
+The email address will then be shown on the main page.
+ 
 ### 3 – Create your spreadsheet
 
 Go to heroku's URL and fill out the following form:
