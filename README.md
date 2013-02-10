@@ -35,7 +35,7 @@ OPTIONAL: if you want to show an email address for users to contact in case they
 
 The email address will then be shown on the main page.
  
-### 3 – Create your spreadsheet
+### 4 – Create your spreadsheet
 
 Go to heroku's URL and fill out the following form:
 
@@ -45,12 +45,12 @@ Once you click the "create" button, you will see a link to a Google spreadsheet.
 
 The phone number should start with + and follow international conventions (and should not contain any spaces).
 
-### 4 – Setting up Twilio
+### 5 – Setting up Twilio
 Once you have a Twilio account, make sure you register a number. Then go to your number's settings and add the appropriate SMS request URL. The request URL follows the format `http://HEROKU_URL/application/add`. For instance, if your heroku URL is `myapp.herokuapp.com` then your request URL will be `http://myapp.herokuapp.com/application/add`
 
 ![](https://raw.github.com/matstc/rhok-accountability/master/public/images/twilio-setup.png)
 
-### 5 – Try it out
+### 6 – Try it out
 Things should now work. If you text something to the phone number you used to set up your spreadsheet, you should see a new expense row in the spreadsheet.
 
 ![](https://raw.github.com/matstc/rhok-accountability/master/public/images/spreadsheet-screenshot.png)
