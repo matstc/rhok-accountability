@@ -3,29 +3,33 @@
   %form{:id => 'newExpensesForm', :method => 'POST', :action => '/application/create_ledger', :class => 'form-grp'}
     %h1 New Ledger
     .box
-      %h2 Phone Number
+      .header
+        %h2 Phone Number
+        .info
+          Enter the phone number of the person filing expenses.
       .content
         %input{:type => 'tel', :name => 'phone_number'}
-    .info
-      For an individual ledger: enter the phone number of the person filing expenses.
-      For a shared ledger: enter the phone number to send expenses to.
 
     .box
-      %h2 Project Name
+      .header
+        %h2 Project Name
+        .info
+          This will be the name of the ledger spreadsheet.
       .content
         %input{:type => 'text', :name => 'project_name'}
-    .info
-      This will be the name of the ledger spreadsheet.
 
     .box
-      %h2 Email Address
+      .header
+        %h2 Email Address
+        .info
+          This email address will be the owner of the spreadsheet.
       .content
         %input{:type => 'email', :name => 'email'}
-    .info
-      This email address will be the owner of the spreadsheet.
 
 
     %button{:type => 'submit', :class => 'big-button'} Create ledger
+
+    = render :partial => 'help_email'
 
     .notice
       %p

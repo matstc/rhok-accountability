@@ -27,11 +27,13 @@ button {margin-top:1em; text-transform:uppercase; padding:0.2em 1em;}
 .big-button:hover {cursor:pointer; background-color:#aaa;}
 .box {border:1px solid #555;}
 .box .content {padding:1em;}
-.box h2 {border-bottom:1px solid #555; padding:3px 0 3px 3px; margin:0;}
+.box .header {border-bottom:1px solid #555; padding:3px 0 3px 3px; margin:0;}
+.box .header h2 {margin:0;}
 .about-container .box h2 {padding-left:1em;}
 .left-column, .right-column {float:left; width:471px; height:410px; margin-top:14px;}
 .logos-image {padding-bottom:28px;}
 .phone-image {float:right; width:170px;}
 .right-column {margin-left:14px;}
 .about-title {text-align:center;}
-.info {font-size:80%; color:#888; margin-top:-1em; margin-bottom:1em;}
+.info, .help-email {font-size:80%; color:#666;}
+.help-email {text-align:center; margin-top:0.5em;}
