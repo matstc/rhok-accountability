@@ -1,4 +1,4 @@
 - if not ENV['help_email'].blank?
 
   .help-email
-    = "If you're not sure how to use this ledger, contact #{ENV['help_email']}"
+    != "If you're not sure how to use this ledger, contact <a href='mailto:#{ENV['help_email']}'>#{ENV['help_email']}</a>"
