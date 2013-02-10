@@ -12,7 +12,7 @@
 
         %p <b>2—</b> Click the <i>CREATE LEDGER</i> button and you will be given a link to a Google spreadsheet. The person with the email address you entered is now the owner of the spreadsheet. As the owner, you can add or remove columns to this spreadsheet as you like. Each SMS will be a new row in that spreadsheet.
 
-        %p <b>3—</b> Add a ledger item by sending an SMS to the organization phone number with <i>item, price, amount, description</i>. Each value should be seperated by commas.
+        %p <b>3—</b> Add a ledger item by sending an SMS to the organization phone number with <i>item, price, amount, description</i>. Each value should be seperated by commas. These columns are used as the default template but you can add or remove columns as you like. The system will fill out the first optional column in the spreadsheet with the value before the first comma in the SMS. Then it will fill the second column with the second value before the second comma in the SMS, an so on.
 
         - if not ENV['help_email'].blank?
           %p!= "If you do not know what the organization phone number is, you can contact <a href='mailto:#{ENV['help_email']}'>#{ENV['help_email']}</a>."
